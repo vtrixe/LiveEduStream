@@ -16,6 +16,11 @@ export default {
     Github({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      authorization: {
+        params: {
+          redirect_uri: 'https://teaching-marmot-maximum.ngrok-free.app/api/auth/callback/github',
+        },
+      },
     }),
     Credentials({
       async authorize(credentials) {
