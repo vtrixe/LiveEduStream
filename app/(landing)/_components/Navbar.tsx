@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
+import { UserButton } from "@clerk/nextjs";
 
 export const Navbar = () => {
   return (
@@ -26,10 +27,16 @@ export const Navbar = () => {
             </Link>
           </Button>
           
+          
          
         </div>
         <div>
             <ModeToggle />
+           
+          </div>
+          <div>
+            <UserButton />
+           
           </div>
       </div>
     </div>

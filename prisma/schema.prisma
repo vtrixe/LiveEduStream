@@ -9,6 +9,15 @@ datasource db {
   url  	    = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
+
+
+enum Role {
+  MEMBER 
+  ADMIN
+  LECTURER
+}
+
+
 model User {
   id             String         @id @default(uuid())
   username       String         @unique
@@ -16,7 +25,12 @@ model User {
   externalUserId String         @unique
   bio            String?        @db.Text
   organizations  Organization[]
+  email String?
 
+  OrganizationRole Role?
+
+
+  
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
 }
@@ -33,4 +47,18 @@ model Organization {
   updatedAt   DateTime @updatedAt
 }
 
+model Invitations {
+    id          String   @id @default(uuid())
+
+    role String
+
+    OrganizationID String
+    email String
+    status String @default("Pending")
+    externalInvitationid String @unique
+     
+
+      createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
 

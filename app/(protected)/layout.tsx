@@ -1,15 +1,19 @@
 import { Logo } from "@/components/logo";
-import { Navbar } from "../(landing)/_components/Navbar";
+import { Navbar } from "./_components/navbar";
+import { Container } from "./_components/container";
+import { Sidebar } from "./_components/sidebar";
 const AuthLayout = ({
   children
 }: {
   children: React.ReactNode;
 }) => {
   return ( 
-    <div className="h-full flex flex-col items-center justify-center space-y-6">
+    <div className="flex h-full pt-20">
            <Navbar />
-      <Logo />
-      {children}
+           <Sidebar />
+           <Container>
+           {children}
+           </Container>
     </div>
   );
 };
