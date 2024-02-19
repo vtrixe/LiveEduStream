@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Clapperboard } from "lucide-react";
 import { 
+  OrganizationSwitcher,
   SignInButton, 
   UserButton, 
   currentUser
@@ -17,6 +18,7 @@ export const Actions =  () => {
     <div className="flex items-center justify-end gap-x-2 ml-4 lg:ml-0">
   
       <UserButton />
+      <OrganizationSwitcher />
     </div>
   );
 };
