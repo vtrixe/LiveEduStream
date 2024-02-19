@@ -13,13 +13,13 @@ export const Logo = () => {
     <Link href="/">
       <div className="hover:opacity-75 transition items-center gap-x-2 hidden md:flex">
         <Image
-          src="/les.svg"
+          src="/reshot.svg"
           alt="Logo"
           height={30}
           width={30}
         />
         <p className={cn(
-          "text-lg text-white  pb-1",
+          "text-lg text-black  pb-1",
           headingFont.className,
         )}>
           LiveEduStream
