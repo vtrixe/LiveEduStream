@@ -37,7 +37,8 @@ export const getRecommended = async () => {
             NOT: {
                 id: self.id,
             },
-            OrganizationRole : "LECTURER"
+            OrganizationRole : "org:lecturer",
+            
         },
         include: {
             organizations: true, 

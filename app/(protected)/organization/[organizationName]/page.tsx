@@ -3,7 +3,7 @@ import { OrganizationSwitcher } from '@clerk/nextjs'
 
 const page = () => {
   return (
-    <div>page
+    <div>
         <OrganizationSwitcher />
     </div>
   )

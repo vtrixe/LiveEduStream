@@ -52,7 +52,8 @@ export async function POST(req: Request){
             externalUserId:payload.data.id,
             username: payload.data.username,
             imageUrl: payload.data.image_url,
-            email : payload.data.email_address
+            email : payload.data.email_address,
+
             
 
 
@@ -70,6 +71,8 @@ export async function POST(req: Request){
       data: {
         username: payload.data.username,
         imageUrl: payload.data.image_url,
+        email: payload.data.email_address,
+
       },
     });
   }
@@ -391,7 +394,7 @@ if (eventType === "organizationInvitation.revoked") {
 
 }
 
-if (eventType === "organizationMembership.created") {
+if (eventType === "organizationMembership.updated") {
     const orgId = payload.data.organization.id;
     const userId = payload.data.public_user_data.user_id;
 
@@ -427,7 +430,7 @@ if (eventType === "organizationMembership.created") {
                 organizations: {
                     connect: { id: organization.id }
                 },
-                OrganizationRole : "MEMBER"
+                OrganizationRole :  payload.data.role
             }
         });
     } catch (err) {
