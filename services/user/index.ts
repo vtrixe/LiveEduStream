@@ -12,17 +12,19 @@ export const  getUserByUsername = async ( username : string) => {
 
 }
 
-export const  getUserByEmail = async (email : string) => {
+// export const  getUserByEmail = async (email : string) => {
 
-    const user = await db.user.findUnique({
+//     const user = await db.user.findUnique({
 
-        where : {
-            email
-        }
 
-    })
-return user;
-}
+//         where : {
+//             email : email,
+//         }
+        
+
+//     })
+// return user;
+// }
 
 export const getUserById = async ( Id : string) => {
     const user = await db.user.findUnique({

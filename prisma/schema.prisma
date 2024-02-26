@@ -22,8 +22,8 @@ model User {
   bio            String?        @db.Text
   organizations  Organization[]
   email String?
-   following Enroll[] @relation("Following")
-  followedBy Enroll[] @relation("FollowedBy")
+  enrolled Enroll[] @relation("enrolled")
+  enrolledBy Enroll[] @relation("enrolledBy")
   OrganizationRole String?
 
 
@@ -50,7 +50,7 @@ model Invitations {
     role String
 
     OrganizationID String
-    email String
+    email String  @unique
     status String @default("Pending")
     externalInvitationid String @unique
      
@@ -61,14 +61,14 @@ model Invitations {
 
 model Enroll {
   id String @id @default(uuid())
-  followerId String
-  followingId String
-  follower User @relation(name: "Following", fields: [followerId], references: [id], onDelete: Cascade)
-  following User @relation(name: "FollowedBy", fields: [followingId], references: [id], onDelete: Cascade)
+  enrolledId String
+  lecturerId String
+  enrolled User @relation(name: "enrolled", fields: [enrolledId], references: [id], onDelete: Cascade)
+  enrolledBy User @relation(name: "enrolledBy", fields: [lecturerId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  @@unique([followerId, followingId])
-  @@index([followerId])
-  @@index([followingId])
+  @@unique([enrolledId, lecturerId])
+  @@index([enrolledId])
+  @@index([lecturerId])
 }
 
