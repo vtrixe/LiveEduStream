@@ -1,6 +1,50 @@
 "use server"
 import { db } from "@/lib/db";
 import { currentUser } from "@clerk/nextjs";
+import { Enroll, User } from "@prisma/client";
+import { getCurrentUser } from "../auth";
+
+interface EnrollmentProps {
+  data: (Enroll & { following: User })[];
+}
+
+export const getEnrollments = async () => {
+  try {
+    const self = await currentUser();
+
+
+
+    const current = await db.user.findUnique({
+      where: {
+          externalUserId: self?.id
+      },
+ 
+  });
+
+
+    if(!self){
+      throw new Error("Unauthoritized")
+    }
+
+    console.log(current?.id); // Make sure this prints the expected user ID
+
+
+    const EnrolledLecturers = await db.enroll.findMany({
+      where: {
+        enrolledId: current?.id,
+      },
+      include: {
+        enrolledBy: true,
+      },
+    });
+    
+    return EnrolledLecturers;
+  }  catch (error) {
+    console.error("Error fetching enrollments:", error);
+    return [];
+  }
+};
+
 
 export const isEnrolled = async (id: string) => {
   try {

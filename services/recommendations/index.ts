@@ -25,6 +25,13 @@ export const getRecommended = async () => {
     }
     const organizationIds = currentUserWithOrgs.organizations.map(org => org.id);
 
+    const current= await db.user.findUnique({
+        where : {
+            externalUserId : self.id,
+
+        }
+    })
+
     const recommendedUsers = await db.user.findMany({
         where: {
             organizations: {
@@ -34,16 +41,26 @@ export const getRecommended = async () => {
                     },
                 },
             },
-            NOT: {
-                id: self.id,
-            },
-            OrganizationRole : "org:lecturer",
-            
+            NOT: [
+                {
+                    id: self.id,
+                },
+                // Add a condition to exclude users (lecturers) the current user has enrolled to
+                {
+                    enrolledBy: {
+                        some: {
+                            enrolledId: current?.id,
+                        },
+                    },
+                },
+            ],
+            OrganizationRole: "org:lecturer",
         },
         include: {
-            organizations: true, 
+            organizations: true, // Include organizations to get details
         },
     });
+    
 
     return recommendedUsers;
 };

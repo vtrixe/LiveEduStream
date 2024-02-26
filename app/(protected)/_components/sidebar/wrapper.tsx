@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/state/use-sidebar";
+import { FollowingSkeleton } from "./enrollments";
 
 interface WrapperProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ export const Wrapper = ({
         collapsed && "w-[70px]"
       )}
     >
+      <FollowingSkeleton />
       {children}
     </aside>
   );
