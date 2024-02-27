@@ -57,7 +57,13 @@ export async function POST(req: Request){
             
 
 
-        }
+            stream: {
+                create: {
+                  name: `${payload.data.username}'s stream`,
+                },
+              },
+            },
+        
 
     })
 
