@@ -39,3 +39,20 @@ export const getUserById = async ( Id : string) => {
 
     return user;
 }
+
+export const getUserRole = async ( username : string) => {
+    const user = await db.user.findUnique({
+        where : {
+
+
+            username : username,
+
+
+
+        }
+
+
+    })
+
+    return user?.OrganizationRole;
+}

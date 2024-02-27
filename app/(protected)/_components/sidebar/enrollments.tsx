@@ -56,9 +56,9 @@ export const Following = ({
 export const FollowingSkeleton = () => {
   return (
     <ul className="px-2 pt-2 lg:pt-0">
-      {[...Array(3)].map((_, i) => (
+      {/* {[...Array(3)].map((_, i) => (
         <UserItemSkeleton key={i} />
-      ))}
+      ))} */}
     </ul>
   );
 };

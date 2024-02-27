@@ -26,6 +26,9 @@ model User {
   enrolledBy Enroll[] @relation("enrolledBy")
   OrganizationRole String?
 
+   blocking Block[] @relation("Blocking")
+  blockedBy Block[] @relation("BlockedBy")
+
 
   
   createdAt      DateTime       @default(now())
@@ -72,3 +75,14 @@ model Enroll {
   @@index([lecturerId])
 }
 
+
+model Block {
+  id String @id @default(uuid())
+  blockerId String
+  blockedId String
+  blocker User @relation(name: "Blocking", fields: [blockerId], references: [id], onDelete: Cascade)
+  blocked User @relation(name: "BlockedBy", fields: [blockedId], references: [id], onDelete: Cascade)
+  @@unique([blockerId, blockedId])
+  @@index([blockerId])
+  @@index([blockedId])
+}

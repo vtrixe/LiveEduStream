@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { getUserByUsername } from "@/services/user";
 import { isEnrolled } from "@/services/enrollments";
 import { Actions } from "./_components/actions";
+import { revalidatePath } from "next/cache";
+import { isBlockedByUser } from "@/services/block";
 
 
 
@@ -21,6 +23,7 @@ const UserPage = async ({
     notFound();
   }
   const enrolled = await isEnrolled(user.id);
+  const isBlocked = await isBlockedByUser(user.id);
   
   console.log(enrolled);
 
@@ -34,6 +37,7 @@ const UserPage = async ({
       <p>username: {user.username}</p>
       <p>user ID: {user.id}</p>
       <p>Are you Enrolled to this Lecturer: {enrolled ? 'Yes' : 'No'}</p>
+      <p>is blocked by this user: {`${isBlocked}`}</p>
       <Actions userId={user.id} isEnrolled={!!enrolled} />
 
  
