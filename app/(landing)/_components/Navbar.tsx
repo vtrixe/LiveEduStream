@@ -26,11 +26,6 @@ export const Navbar = () => {
              Join your Organization
             </Link>
           </Button>
-          <Button size="sm" asChild id="home-button">
-            <Link href="/home">
-            Home
-            </Link>
-          </Button>
           
           
          
