@@ -1,0 +1,8 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "paths": {
+      "@*": ["./packages/ui/*", "./apps/web/*"] // here
+    }
+  },
+}
