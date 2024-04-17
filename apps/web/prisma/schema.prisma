@@ -16,15 +16,21 @@ enum UserRole {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  name          String?   
   email         String?   @unique
+  emailDomain   String?
   emailVerified DateTime?
   image         String?
   password      String?
   role          UserRole @default(USER)
   accounts      Account[]
+  description   String?
   isTwoFactorEnabled Boolean @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
+  enrolledTo Enroll[] @relation("enrolledTo")
+  enrolledBy Enroll[] @relation("enrolledBy")
+   blocking Block[] @relation("Blocking")
+  blockedBy Block[] @relation("BlockedBy")
 }
 
 model Account {
@@ -75,9 +81,31 @@ model TwoFactorToken {
 
 model TwoFactorConfirmation {
   id String @id @default(cuid())
-
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   @@unique([userId])
+}
+
+model Enroll {
+  id String @id @default(uuid())
+  enrolledById String
+  enrolledToId String
+
+
+  enrolledBy User @relation(name: "enrolledTo", fields: [enrolledById], references: [id], onDelete: Cascade)
+  enrolledTo User @relation(name: "enrolledBy", fields: [enrolledToId], references: [id], onDelete: Cascade)
+
+}
+
+model Block {
+  id String @id @default(uuid())
+  blockerId String
+  blockedId String
+
+  blocker User @relation(name: "Blocking", fields: [blockerId], references: [id], onDelete: Cascade)
+  blocked User @relation(name: "BlockedBy", fields: [blockedId], references: [id], onDelete: Cascade)
+
+  @@unique([blockerId, blockedId])
+  @@index([blockerId])
+  @@index([blockedId])
 }

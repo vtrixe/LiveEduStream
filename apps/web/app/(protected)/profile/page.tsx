@@ -7,13 +7,6 @@ import { useTransition, useState } from "react";
 import { useSession } from "next-auth/react";
 
 import { Switch } from "@/components/ui/switch";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { SettingsSchema } from "@/schemas";
 import {
   Card,
@@ -163,35 +156,7 @@ const SettingsPage = () => {
                   />
                 </>
               )}
-              <FormField
-                control={form.control}
-                name="role"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Role</FormLabel>
-                    <Select
-                      disabled={isPending}
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a role" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value={UserRole.ADMIN}>
-                          Admin
-                        </SelectItem>
-                        <SelectItem value={UserRole.USER}>
-                          User
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+           
               {user?.isOAuth === false && (
                 <FormField
                   control={form.control}

@@ -30,6 +30,9 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
       name,
       email,
       password: hashedPassword,
+      emailDomain: email.substring(email.lastIndexOf("@") + 1),
+      
+      
     },
   });
 

@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
+import { Logo } from "@/app/(protected)/_components/navbar/logo";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -20,7 +21,7 @@ export const Header = ({
         "text-3xl font-semibold",
         font.className,
       )}>
-        🔐 Auth
+        <Logo />
       </h1>
       <p className="text-muted-foreground text-sm">
         {label}
