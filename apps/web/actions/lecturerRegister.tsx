@@ -31,9 +31,12 @@ export const LecturerRegister = async (values: z.infer<typeof RegisterSchema>) =
       email,
       password: hashedPassword,
       emailDomain: email.substring(email.lastIndexOf("@") + 1),
-      role : "LECTURER",
-      
-      
+      role: "LECTURER",
+      stream: {
+        create: {
+          name: `${name}'s stream`,
+        },
+      },
     },
   });
 

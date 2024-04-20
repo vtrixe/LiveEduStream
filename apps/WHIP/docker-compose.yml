@@ -1,0 +1,15 @@
+version: '3'
+services:
+  janus:
+    image: meetecho/janus-gateway
+    ports:
+      - 8088:8088
+      - 8188:8188
+    environment:
+      - JANUS_TRANSPORT_HTTP=yes
+      - JANUS_TRANSPORT_HTTPS=yes
+      - JANUS_WEBRTC_ENABLED=yes
+      - JANUS_WEBRTC_NATURAL_SORT=1
+      - JANUS_WEBRTC_ISFRAGMENTED=1
+      - JANUS_WEBRTC_ENCRYPTION=no
+    restart: unless-stopped

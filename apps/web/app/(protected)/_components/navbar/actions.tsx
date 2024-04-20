@@ -1,12 +1,16 @@
+/* eslint-disable no-unused-vars */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@/components/auth/user-button";
 import { currentUser } from "@/lib/auth";
 import { DashboardIcon } from "@radix-ui/react-icons";
 import { ModeToggle } from "@/components/mode-toggle";
+import { currentRole } from "@/lib/auth";
+
 
 export const Actions = async () => {
-  const user = await currentUser()
+  const user = await currentUser();
+  const role = await currentRole();
 
   return (
     <div className="flex items-center justify-end gap-x-2 ml-4 lg:ml-0">

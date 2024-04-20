@@ -4,7 +4,7 @@ import React from 'react'
 import { getUserById } from '@/data/user';
 import { redirect } from 'next/navigation';
 import { isEnrolled } from '@/services/enrollments';
-import { Actions } from './_components/actions';
+import { Actions } from '../_components/actions';
 interface DashProps {
     params : {
         id : string;
@@ -20,7 +20,7 @@ const LecturerPage = async ({params}: DashProps) => {
   }
 
   
-  const isEnrolledUser = await isEnrolled(params.id)
+  const isEnrolledUser : boolean = await isEnrolled(params.id)
   return (
     <div>
       Name : {user.name}

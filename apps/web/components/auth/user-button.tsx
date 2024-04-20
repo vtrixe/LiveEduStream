@@ -2,6 +2,7 @@
 
 import { FaUser } from "react-icons/fa";
 import { ExitIcon } from "@radix-ui/react-icons"
+import { CircleUserIcon } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -37,6 +38,12 @@ export const UserButton = () => {
             Logout
           </DropdownMenuItem>
         </LogoutButton>
+        <CircleUserIcon className="w-40" >
+     <DropdownMenuItem>
+      Profile
+     </DropdownMenuItem>
+        </CircleUserIcon>
+        
       </DropdownMenuContent>
     </DropdownMenu>
   );

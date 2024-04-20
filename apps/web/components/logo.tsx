@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Link from "next/link";
 import Image from "next/image";
 import { Noto_Serif_Georgian } from "next/font/google";
@@ -16,12 +17,10 @@ export const Logo = () => {
           height={30}
           width={30}
         />
-        <p className={cn(
-          "text-lg text-black  pb-1",
-          headingFont.className,
-        )}>
-          LiveEduStream
-        </p>
+     <p className="text-lg font-semibold">
+            LiveEdustream
+          </p>
+     
       </div>
     </Link>
   );
